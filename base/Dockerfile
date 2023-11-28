@@ -1,9 +1,9 @@
-FROM debian:9
+FROM ubuntu:latest
 
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 MAINTAINER Giannis Mouchakis <gmouchakis@iit.demokritos.gr>
 
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y \
       openjdk-8-jdk \
       net-tools \
       curl \
@@ -11,14 +11,18 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
       gnupg \
       libsnappy-dev \
     && rm -rf /var/lib/apt/lists/*
-      
+	
+# Install python
+RUN apt-get update && apt-get install -y pip python3
+RUN pip install pyspark
+
 ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
 RUN gpg --import KEYS
 
-ENV HADOOP_VERSION 3.2.1
+ENV HADOOP_VERSION 3.3.6
 ENV HADOOP_URL https://www.apache.org/dist/hadoop/common/hadoop-$HADOOP_VERSION/hadoop-$HADOOP_VERSION.tar.gz
 
 RUN set -x \

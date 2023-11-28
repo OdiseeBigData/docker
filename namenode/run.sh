@@ -1,5 +1,11 @@
 #!/bin/bash
 
+echo "Start run"
+
+echo "Start jupyter-lab"
+jupyter-lab --allow-root --no-browser --ip=0.0.0.0 --NotebookApp.token='' --NotebookApp.password='' &
+echo "jupyter-lab started"
+
 namedir=`echo $HDFS_CONF_dfs_namenode_name_dir | perl -pe 's#file://##'`
 if [ ! -d $namedir ]; then
   echo "Namenode name directory not found: $namedir"

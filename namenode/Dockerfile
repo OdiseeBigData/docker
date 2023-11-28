@@ -1,4 +1,4 @@
-FROM bde2020/hadoop-base:2.0.0-hadoop3.2.1-java8
+FROM base
 
 MAINTAINER Ivan Ermilov <ivan.s.ermilov@gmail.com>
 
@@ -8,9 +8,19 @@ ENV HDFS_CONF_dfs_namenode_name_dir=file:///hadoop/dfs/name
 RUN mkdir -p /hadoop/dfs/name
 VOLUME /hadoop/dfs/name
 
-ADD run.sh /run.sh
-RUN chmod a+x /run.sh
-
 EXPOSE 9870
 
+# install jupyter notebook
+RUN pip install jupyterlab
+EXPOSE 8888
+
+# DATA SCIENCE INSTALLS
+RUN pip install opendatasets pandas
+
+#BIG DATA INSTALLS
+RUN pip install hdfs mrjob
+EXPOSE 4040
+
+ADD run.sh /run.sh
+RUN chmod a+x /run.sh
 CMD ["/run.sh"]
