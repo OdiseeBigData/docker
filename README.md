@@ -20,11 +20,9 @@ Hoe starten
 Tegengekomen fouten
 ########
 
-bad interpreter in entrypoint of run.sh		
-
-		open de .sh file in visual studio code en wissel crlf naar lf -> rechtsonderaan. bewaar de file en probeer opnieuw.
+-bad interpreter in entrypoint of run.sh		
+	- open de .sh file in visual studio code en wissel crlf naar lf -> rechtsonderaan. bewaar de file en probeer opnieuw.
 		
-mapred-site.xml error bij mapreduce
-	
-		versienummer in hadoop.env is niet correct overgenomen
+- mapred-site.xml error bij mapreduce
+	-versienummer in hadoop.env is niet correct overgenomen
 		
